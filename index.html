@@ -5,9 +5,7 @@
     <title>GIF Machine and Tool Company</title>
     
     <link href="assets/css/gif_style.css" rel="stylesheet" type="text/css"><!-- Add unique stylesheet -->
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css"><!-- Add Font Awesome -->
     <link href="https://fonts.googleapis.com/css?family=Droid+Sans:400,700|Oxygen:300,400,700|Raleway:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"><!-- Add Google Web Font -->
-    <script src="assets/script/categories.js"></script> <!-- Loads catergories, questions and answers data -->
     <script 
     src="https://code.jquery.com/jquery-3.1.0.js"   
     integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   
@@ -21,10 +19,12 @@
 <div id="header">
     <div id="header-inner">
         <div id="logo"><img src="assets/images/gif-logo.png" width="250px"></div>
-        <div id="searchForm"><p>Enter a search term to add a button for GIF assembly.</p>
-        <div id="search-elements"><input type="text" name="searchTerm" class="search-box"> <button class="add-button">Go</button></div>
+        <div id="searchForm"><p><label for="searchTerm">Enter a search term to add a button for GIF assembly.</label></p>
+            <div id="search-elements"><input type="text" name="searchTerm" class="search-box"> <button class="add-button">Assemble</button></div>
         </div>
+
     </div>
+
 </div>
 
 <div id="container">
@@ -34,22 +34,120 @@
     </div>
     <div id="main-content">
         <div id="main-content-inner">
+            <div id="gifBoard"></div>
             
         </div>        
     </div>
 </div>
 
 <div id="footer">
-    <div id="footer-inner">
-    <p>&copy; 2016  <strong><a href="https://www.linkedin.com/in/ideabrothers">Andrew Carr</a></strong> | 
-    Demo project for <a href="https://www.codingbootcamputaustin.com/">The Coding Boot Camp</a>  at UT Austin Center for Professional Education
-    </p>
+    <div id="footer-inside">
+        <div id="footer-inner">
+        <p>&copy; 2016  <strong><a href="https://www.linkedin.com/in/ideabrothers">Andrew Carr</a></strong> | 
+        Demo project for <a href="https://www.codingbootcamputaustin.com/">The Coding Boot Camp</a>  at UT Austin Center for Professional Education
+        </p>
+        </div>
     </div>
 </div>
 
 <script>
 // If page is ready
 $(document).ready(function(){
+// Set initial array of terms
+    var terms = ['Pixar', 'The Simpsons',  'Santa Claus', 'Sherlock', 'Tom and Jerry', 'Hanna Barbera', 'Scooby-Doo', 'Dinosaurs', 'Mic Drop', 'Gasp', 'Halloween', 'Robots', 'Gerrard', 'Clue Movie', 'Yosemite Sam', 'Wile E Coyote', 'Looney Tunes', 'Elf', 'Harry Potter', 'Friends TV', 'Dwight Schrute', 'Ron Swanson'];
+
+// Render the buttons on the page
+    function renderButtons(){ ''
+        $('#buttons-inner').empty();
+
+        for (var i = 0; i < terms.length; i++){
+            var termButton = $('<button>') ;
+            termButton.addClass('term'); 
+            termButton.attr('data-name', terms[i]); 
+            termButton.text(terms[i]); 
+            $('#buttons-inner').append(termButton); 
+        }
+    }
+
+    // Animate or pause GIF depending
+    function activateGIF() {
+
+        console.log("activate gif");
+
+        var state = $(this).attr("data-state");
+
+        if (state === "still") {
+            var source = $(this).attr("data-animate");
+            $(this).attr("src", source);
+            $(this).attr("data-state", "animate");
+            $(this).attr("class", "term-image-click bright")
+
+        }
+
+        else if (state !== "still") {
+            var source = $(this).attr("data-still");
+            $(this).attr("src", source);
+            $(this).attr("data-state", "still");
+            $(this).attr("class", "term-image-click dark")
+        }
+    }
+
+// Event Handlers
+   
+    // Enter term in search box and create a button
+    $('.add-button').on('click', function(){
+
+        var newTerm = $('.search-box').val().trim();
+        if (newTerm !== '') {
+            terms.push(newTerm);
+            renderButtons();
+            $('.search-box').text();
+        }
+
+        // When the user clicks on a term button, get and display GIFS
+        $('.term').on('click', getGIFs);
+        // We have this line so that users can hit "enter" instead of clicking on ht button and it won't move to the next page
+        return false;
+    })
+
+// Get and Display GIFs
+    function getGIFs() {
+
+        $('#gifBoard').empty();
+        var termData = $(this).data('name');
+        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + termData + "&api_key=dc6zaTOxFJmzC";
+        console.log(termData);
+        console.log(queryURL);
+        // Run AJAX query 
+        $.ajax({url: queryURL, method: 'GET'})
+            .done(function(response) {
+                var results = response.data;
+
+                for (var i = 0; i < results.length; i++) {
+                    if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
+                        var gifDiv = $('<div class="term-GIF">')
+                        var termImage = $('<img>');
+                        termImage.attr("class", "term-image-click dark")
+                        termImage.attr('src', results[i].images.fixed_height_still.url);
+                        termImage.attr("data-state", "still");
+                        termImage.attr("data-still", results[i].images.fixed_height_still.url);
+                        termImage.attr("data-animate", results[i].images.fixed_height.url);
+                        termImage.attr("style", "max-height: 200px; max-width: 100%");
+                        gifDiv.append(termImage)
+                        $('#gifBoard').append(gifDiv);
+                    }
+                }
+            // Click on an image to animate/pause the GIF
+            $('.term-image-click').on('click', activateGIF);
+            });
+    }
+
+    renderButtons();
+
+    // When the user clicks on a term button, get and display GIFS
+    $('.term').on('click', getGIFs);
+
+
 
    
 });
