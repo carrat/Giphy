@@ -11,7 +11,6 @@
     integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   
     crossorigin="anonymous">   // Add jQuery
     </script>
-
 </head>
 
 <body>
@@ -22,9 +21,7 @@
          <div id="searchForm"><p><label for="searchTerm">Enter a search term to add a button for GIF assembly.</label></p>
             <div id="search-elements"><input type="text" name="searchTerm" class="search-box"> <button class="add-button">Assemble</button></div>
         </div>
-    
     </div>
-   
 </div>
 
 <div id="container">
@@ -53,7 +50,7 @@
 // If page is ready
 $(document).ready(function(){
 // Set initial array of terms
-    var terms = ['Pixar', 'The Simpsons',  'Santa Claus', 'Tom and Jerry', 'Scooby-Doo', 'Dinosaurs', 'Mic Drop', 'Gasp', 'Halloween', 'Robots', 'Clue Movie', 'Yosemite Sam', 'Wile E Coyote', 'Looney Tunes', 'Elf', 'Harry Potter', 'Friends TV', 'Dwight Schrute', 'Ron Swanson', 'Movies', 'Charlie Chaplin', 'The Princess Bride', 'Typography', 'Squirrel'];
+    var terms = ['Pixar', 'The Simpsons',  'Santa Claus', 'Tom and Jerry', 'Scooby-Doo', 'Dinosaurs', 'Mic Drop', 'Gasp', 'Halloween', 'Robots', 'Clue Movie', 'Yosemite Sam', 'Wile E Coyote', 'Looney Tunes', 'Elf', 'Harry Potter', 'Friends TV', 'Dwight Schrute', 'Ron Swanson', 'Movies', 'Charlie Chaplin', 'The Princess Bride', 'Typography', 'Squirrel', 'Blazing Saddles', 'Young Frankenstein'];
 
 // Render the buttons on the page
     function renderButtons(){ ''
@@ -91,9 +88,9 @@ $(document).ready(function(){
    
     // Enter term in search box and create a button
     $('.add-button').on('click', function(){
-
+    // Get value from form
         var newTerm = $('.search-box').val().trim();
-       // Make sure form isn't blank
+    // Make sure form isn't blank
         if (newTerm !== '') {
             terms.push(newTerm);
             renderButtons();
@@ -113,7 +110,7 @@ $(document).ready(function(){
         $('.active').attr("class", "term"); // deactivate last active button
         $(this).attr("class", "active"); // activate current button
 
-        // Run AJAX query 
+    // Run AJAX query 
         $.ajax({url: queryURL, method: 'GET'})
             .done(function(response) {
                 var results = response.data;
@@ -132,9 +129,9 @@ $(document).ready(function(){
                         $('#gifBoard').append(gifDiv);
                     }
                 }
-            // Click on an image to animate/pause the GIF
-            $('.term-image-click').on('click', activateGIF);
-            });
+    // Click on an image to animate/pause the GIF
+        $('.term-image-click').on('click', activateGIF);
+        });
     }
     // Render the buttons
     renderButtons();
