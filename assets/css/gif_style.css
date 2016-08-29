@@ -39,7 +39,7 @@ a:hover {
 	margin-right: auto;
 	/*background: linear-gradient(#ffffff, #e1e1e1);*/
 	/*background-color: rgba(255,255,255,0.75);*/
-	background: linear-gradient(#032f53, #032745);
+	background: linear-gradient(#0b406c, #032745);
 	/*box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.1);*/
 	
 	clear: both;
@@ -114,6 +114,7 @@ a:hover {
 	height: 100%;
 	margin-top: 0px;
 	clear: both;
+
 }
 
 #buttons {
@@ -123,7 +124,7 @@ a:hover {
 	vertical-align: middle;
 	margin-bottom: 10px;
 	margin-top: 10px;
-	background: linear-gradient(#032f53, #032745);
+	background: linear-gradient(#0b406c, #032745 90%);
 	/*background: linear-gradient(#20a28e, #032745 70%);*/
 
 
