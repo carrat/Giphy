@@ -9,7 +9,7 @@
     <script 
     src="https://code.jquery.com/jquery-3.1.0.js"   
     integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   
-    crossorigin="anonymous">    
+    crossorigin="anonymous">   // Add jQuery
     </script>
 
 </head>
@@ -22,20 +22,16 @@
         <div id="searchForm"><p><label for="searchTerm">Enter a search term to add a button for GIF assembly.</label></p>
             <div id="search-elements"><input type="text" name="searchTerm" class="search-box"> <button class="add-button">Assemble</button></div>
         </div>
-
     </div>
-
 </div>
 
 <div id="container">
-
     <div id="buttons">
         <div id="buttons-inner"></div>
     </div>
     <div id="main-content">
         <div id="main-content-inner">
-            <div id="gifBoard"></div>
-            
+            <div id="gifBoard"></div>      
         </div>        
     </div>
 </div>
@@ -54,11 +50,11 @@
 // If page is ready
 $(document).ready(function(){
 // Set initial array of terms
-    var terms = ['Pixar', 'The Simpsons',  'Santa Claus', 'Sherlock', 'Tom and Jerry', 'Hanna Barbera', 'Scooby-Doo', 'Dinosaurs', 'Mic Drop', 'Gasp', 'Halloween', 'Robots', 'Gerrard', 'Clue Movie', 'Yosemite Sam', 'Wile E Coyote', 'Looney Tunes', 'Elf', 'Harry Potter', 'Friends TV', 'Dwight Schrute', 'Ron Swanson'];
+    var terms = ['Pixar', 'The Simpsons',  'Santa Claus', 'Sherlock', 'Tom and Jerry', 'Hanna Barbera', 'Scooby-Doo', 'Dinosaurs', 'Mic Drop', 'Gasp', 'Halloween', 'Robots', 'Gerrard', 'Clue Movie', 'Yosemite Sam', 'Wile E Coyote', 'Looney Tunes', 'Elf', 'Harry Potter', 'Friends TV', 'Dwight Schrute', 'Ron Swanson', 'Movies', 'Charlie Chaplin'];
 
 // Render the buttons on the page
     function renderButtons(){ ''
-        $('#buttons-inner').empty();
+        $('#buttons-inner').empty(); // empty buttons board
 
         for (var i = 0; i < terms.length; i++){
             var termButton = $('<button>') ;
@@ -69,21 +65,17 @@ $(document).ready(function(){
         }
     }
 
-    // Animate or pause GIF depending
+// Animate or pause GIF depending
     function activateGIF() {
-
-        console.log("activate gif");
-
+        // Determine current state of GIF
         var state = $(this).attr("data-state");
-
+        // Animate or freeze depending
         if (state === "still") {
             var source = $(this).attr("data-animate");
             $(this).attr("src", source);
             $(this).attr("data-state", "animate");
             $(this).attr("class", "term-image-click bright")
-
         }
-
         else if (state !== "still") {
             var source = $(this).attr("data-still");
             $(this).attr("src", source);
@@ -98,26 +90,26 @@ $(document).ready(function(){
     $('.add-button').on('click', function(){
 
         var newTerm = $('.search-box').val().trim();
+       // Make sure form isn't blank
         if (newTerm !== '') {
             terms.push(newTerm);
             renderButtons();
             $('.search-box').text();
         }
-
-        // When the user clicks on a term button, get and display GIFS
+    // When the user clicks on a term button, get and display GIFS
         $('.term').on('click', getGIFs);
-        // We have this line so that users can hit "enter" instead of clicking on ht button and it won't move to the next page
-        return false;
     })
 
 // Get and Display GIFs
     function getGIFs() {
 
-        $('#gifBoard').empty();
-        var termData = $(this).data('name');
-        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + termData + "&api_key=dc6zaTOxFJmzC";
-        console.log(termData);
-        console.log(queryURL);
+        $('#gifBoard').empty(); // empty the GIF board
+        var termData = $(this).data('name'); // get the term for the search
+        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + termData + "&api_key=dc6zaTOxFJmzC"; // search API
+
+        $('.active').attr("class", "term"); // deactivate last active button
+        $(this).attr("class", "active"); // activate current button
+
         // Run AJAX query 
         $.ajax({url: queryURL, method: 'GET'})
             .done(function(response) {
@@ -141,19 +133,12 @@ $(document).ready(function(){
             $('.term-image-click').on('click', activateGIF);
             });
     }
-
+    // Render the buttons
     renderButtons();
-
     // When the user clicks on a term button, get and display GIFS
     $('.term').on('click', getGIFs);
-
-
-
-   
 });
-
 </script>
-
 </body>
 </html>
 

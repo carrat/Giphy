@@ -77,7 +77,7 @@ a:hover {
 	color: white;
 	font-family: 'Oxygen', Arial, sans-serif;
 	font-weight: 400;
-	font-size: 14px;
+	font-size: 16px;
 	text-align: center;
 
 	
@@ -153,11 +153,12 @@ a:hover {
 	margin: 0px;
 	padding-left: 20px;
 	padding-right: 20px;
-	padding-bottom: 0px;
+	padding-bottom: 20px;
 	position: fixed;
 	bottom: 0;
 	left: 0;
 	/*background: #20a28e;*/
+	background: #032745;
 
 
 }
@@ -221,7 +222,8 @@ input.search-box {
 	outline-style: none;
 	height: 23px;
 	margin: 0px;
-	padding: 0px;
+	padding-left: 10px;
+	padding-right: 20px;
 	vertical-align: middle;
 
 }
@@ -264,12 +266,11 @@ button.term {
 	font-family: 'Oxygen', Arial, sans-serif;
 	font-weight: 600;
 	font-size: 14px;
-	border: none;
 	outline-style: none;
 	margin-left: 5px;
 	margin-right: 5px;
 	margin-bottom: 10px;
-	background-color: rgba(61,95,123,0.75);
+	background-color: rgba(61,95,123,0.15);
 	box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.1);
 	border: 1px solid #136995;
 
@@ -287,6 +288,24 @@ button.term:active {
 	border: 1px solid #136995;
 }
 
+button.active {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: white;
+	font-family: 'Oxygen', Arial, sans-serif;
+	font-weight: 600;
+	font-size: 14px;
+	outline-style: none;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-bottom: 10px;
+	background-color: rgba(22,184,155,0.75);
+	border: 1px solid #FFFFFF;
+	box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.1);
+
+}
 .white {
 	color: #ffffff;
 }
