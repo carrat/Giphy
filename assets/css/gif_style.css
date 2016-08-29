@@ -103,6 +103,7 @@ a:hover {
 	margin-bottom: 10px;
 	margin-top: 10px;
 	background: linear-gradient(#032f53, #032745);
+	/*background: linear-gradient(#20a28e, #032745 70%);*/
 
 
 
@@ -184,6 +185,7 @@ a:hover {
 	padding-left: 15px;
 	padding-bottom: 15px;
 	background: linear-gradient(#032745, #032f53);
+	/*background: linear-gradient(#032745, #20a28e 80%);*/
 
 }
 
