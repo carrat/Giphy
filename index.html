@@ -19,10 +19,12 @@
 <div id="header">
     <div id="header-inner">
         <div id="logo"><img src="assets/images/gif-logo.png" width="250px"></div>
-        <div id="searchForm"><p><label for="searchTerm">Enter a search term to add a button for GIF assembly.</label></p>
+         <div id="searchForm"><p><label for="searchTerm">Enter a search term to add a button for GIF assembly.</label></p>
             <div id="search-elements"><input type="text" name="searchTerm" class="search-box"> <button class="add-button">Assemble</button></div>
         </div>
+    
     </div>
+   
 </div>
 
 <div id="container">
@@ -39,6 +41,7 @@
 <div id="footer">
     <div id="footer-inside">
         <div id="footer-inner">
+        <p><span class="emphasis">43</span> days without a GIF accident.</p>
         <p>&copy; 2016  <strong><a href="https://www.linkedin.com/in/ideabrothers">Andrew Carr</a></strong> | 
         Demo project for <a href="https://www.codingbootcamputaustin.com/">The Coding Boot Camp</a>  at UT Austin Center for Professional Education
         </p>
@@ -50,7 +53,7 @@
 // If page is ready
 $(document).ready(function(){
 // Set initial array of terms
-    var terms = ['Pixar', 'The Simpsons',  'Santa Claus', 'Sherlock', 'Tom and Jerry', 'Hanna Barbera', 'Scooby-Doo', 'Dinosaurs', 'Mic Drop', 'Gasp', 'Halloween', 'Robots', 'Clue Movie', 'Yosemite Sam', 'Wile E Coyote', 'Looney Tunes', 'Elf', 'Harry Potter', 'Friends TV', 'Dwight Schrute', 'Ron Swanson', 'Movies', 'Charlie Chaplin', 'Top Secret Movie', 'The Princess Bride', 'Typography'];
+    var terms = ['Pixar', 'The Simpsons',  'Santa Claus', 'Tom and Jerry', 'Scooby-Doo', 'Dinosaurs', 'Mic Drop', 'Gasp', 'Halloween', 'Robots', 'Clue Movie', 'Yosemite Sam', 'Wile E Coyote', 'Looney Tunes', 'Elf', 'Harry Potter', 'Friends TV', 'Dwight Schrute', 'Ron Swanson', 'Movies', 'Charlie Chaplin', 'The Princess Bride', 'Typography', 'Squirrel'];
 
 // Render the buttons on the page
     function renderButtons(){ ''

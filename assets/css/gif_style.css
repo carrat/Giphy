@@ -63,7 +63,6 @@ a:hover {
 }
 #logo {
 	float: left;
-	
 	border-right: 1px solid #136995;
 	height: 160px;
 	padding-top: 10px;
@@ -72,16 +71,38 @@ a:hover {
 }
 #searchForm {
 	float: right;
-	
-	padding: 40px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 40px;
+	padding-bottom: 20px;
 	color: white;
 	font-family: 'Oxygen', Arial, sans-serif;
 	font-weight: 400;
 	font-size: 16px;
-	text-align: center;
+	text-align: center;	
 
-	
 }
+
+#instructions {
+	float: right;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 30px;
+	color: white;
+	font-family: 'Oxygen', Arial, sans-serif;
+	font-weight: 400;
+	font-size: 14px;
+	text-align: center;	
+}
+
+#instructions h1 {
+	color: #20a28e;
+	font-family: 'Oxygen', Arial, sans-serif;
+	font-weight: 400;
+	font-size: 17px;
+	text-align: center;	
+}
+
 
 
 #container {
@@ -316,9 +337,29 @@ button.active {
 	font-size: 5px;
 }
 
+.emphasis {
+	color: #20a28e;
+
+}
 
 
-@media screen and (max-width: 468px) {
+
+@media screen and (max-width: 768px) {
+	#searchForm {
+	width: 100%;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 10px;
+	padding-bottom: 20px;
+	color: white;
+	font-family: 'Oxygen', Arial, sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	text-align: center;	
+
+}
+}
+
 
 }
 
