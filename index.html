@@ -108,7 +108,7 @@ $(document).ready(function(){
 
         $('#gifBoard').empty(); // empty the GIF board
         var termData = $(this).data('name'); // get the term for the search
-        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + termData + "&api_key=dc6zaTOxFJmzC"; // search API
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + termData + "&api_key=dc6zaTOxFJmzC"; // search API
 
         $('.active').attr("class", "term"); // deactivate last active button
         $(this).attr("class", "active"); // activate current button
